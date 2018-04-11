@@ -41,7 +41,7 @@ This procedure executes four steps:
 It creates the vertex set of a graph, in which every node (except for the two sentinels) are like ![equation](http://latex.codecogs.com/gif.latex?(i,j)), representing a task chain. Vertexes are created and divided in levels:
 * **level 0** contains the sentinel node S
 * **level 1** contains the nodes ![equation](http://latex.codecogs.com/gif.latex?(0,j)\&space;\forall&space;j=1,\dots,m-N)
-* **level k** contains the node ![equation](http://latex.codecogs.com/gif.latex?(i,j)\forall&space;i=k,\dots,m-(N-k)\&space;\forall&space;j=i,\dots,m-(N-k)) and ![equation](http://latex.codecogs.com/gif.latex?k=2,\dots,N-1)
+* **level k** contains the node ![equation](http://latex.codecogs.com/gif.latex?(i,j)\forall&space;i=k-1,\dots,m-(N-k+1)\&space;\forall&space;j=i,\dots,m-(N-k)) and ![equation](http://latex.codecogs.com/gif.latex?k=2,\dots,N-1)
 * **level N** contains the nodes ![equation](http://latex.codecogs.com/gif.latex?(i,m)\&space;\forall&space;j=N,\iots,m)
 * **level N+1** contains the sentinel node T
 ### step 2
