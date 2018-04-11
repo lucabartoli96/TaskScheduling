@@ -21,6 +21,8 @@ and where:\
 
 So the schedule is the optimal assignment of the m tasks to the N processors
 
+## LOG
+
 Run with:
 
 ```console
