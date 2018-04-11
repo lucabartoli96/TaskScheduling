@@ -46,9 +46,9 @@ class TaskGraph(object):
         
         levels.append(level)
         
-        for k in range(1, N-1):
+        for k in range(2, N):
             level = []
-            lim_sup = m - (N - k) + 1
+            lim_sup = m - (N - k)
             for i in range(k, lim_sup):
                 for j in range(i, lim_sup):
                     level.append(TaskChain(i, j))
