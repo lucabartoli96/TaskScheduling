@@ -2,7 +2,7 @@ from task_graph import TaskGraph
 
 import math
 
-def bisection_rec(SUMS, height, p, q, w):
+def bisection_rec(SUMS, height, p, q, w, LOG):
     
     S = SUMS[q]
     
@@ -28,11 +28,11 @@ def bisection_rec(SUMS, height, p, q, w):
     if height == 0:
         return result
     else:
-        left = bisection_rec(SUMS, height - 1, p, m_idx, w)
-        right = bisection_rec(SUMS, height - 1, m_idx + 1, q, w)
+        left = bisection_rec(SUMS, height - 1, p, m_idx, w, LOG)
+        right = bisection_rec(SUMS, height - 1, m_idx + 1, q, w, LOG)
         return left + result + right 
 
-def bisection(N, m, w):
+def bisection(N, m, w, LOG):
     SUMS = []
     
     acc = 0
@@ -40,10 +40,10 @@ def bisection(N, m, w):
         acc += w_i
         SUMS.append(acc)
     
-    return bisection_rec(SUMS, int(math.floor(math.log(N, 2))) - 1, 0, m-1, w)
+    return bisection_rec(SUMS, int(math.floor(math.log(N, 2))) - 1, 0, m-1, w, LOG)
 
 
-def partition(N, m, c, w):
+def partition(N, m, c, w, LOG):
 
     i, j, p = 0, -1, 0
     
@@ -67,7 +67,7 @@ def partition(N, m, c, w):
     
     return None
 
-def greedy(N, m, w):
+def greedy(N, m, w, LOG):
 
     w_max = -float("inf")
     w_sum = 0
@@ -84,7 +84,7 @@ def greedy(N, m, w):
     while p < q or (p == q != prev_p):
         prev_p = p
         c = int(math.floor((p + q)/float(2)))
-        schedule = partition(N, m, c, w)
+        schedule = partition(N, m, c, w, LOG)
 
         if schedule is None:
             p = c + 1
@@ -93,7 +93,10 @@ def greedy(N, m, w):
     
     return schedule
 
-def optimal(N, m, w):
+def optimal(N, m, w, LOG):
     task_graph = TaskGraph(N, m, w)
-    return task_graph.critical_path()
+    cp = task_graph.critical_path()
+    if LOG:
+        task_graph.LOG()
+    return cp
     

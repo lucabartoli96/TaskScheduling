@@ -7,9 +7,6 @@ class TaskGraph(object):
         
         self._levels = self._init_levels(N, m, Sentinel, TaskChain)
         self._connect_levels(N, m)
-        
-        #self._dump(N, m)
-    
     
     def critical_path(self):
         
@@ -49,7 +46,7 @@ class TaskGraph(object):
         for k in range(2, N):
             level = []
             lim_sup = m - (N - k)
-            for i in range(k, lim_sup):
+            for i in range(k-1, lim_sup):
                 for j in range(i, lim_sup):
                     level.append(TaskChain(i, j))
             levels.append(level)
@@ -83,21 +80,40 @@ class TaskGraph(object):
             u.connect(T)
             
     
-    def _dump(self, N, m):
+    def LOG(self):
+        
+        print "\nSTEP 1"
+        
+        print "\nP_i = 'i-th Processor'"
+        print "(i, j) = 'task chain from i to j'\n"
+        
         for i, level in enumerate(self._levels):
             str_level = "P_" + str(i) + "-> "
             for node in level:
                 str_level += node.name + " "
             print str_level
             
+        print "\nSTEP 2-3"
+        
+        print "\n(i, j) --> [w, (i_1, j_1)], ..., [w, (i_1, j_1)] = "
+        print "'edges from the node (i, j) to (i_k, j_k), with k = 1, ..., n, weighted w'\n"
+        
         for i, level in enumerate(self._levels):
             print "P_" + str(i)
             for node in level:
                 node.printConnected()
+                
+        print "\nSTEP 4"
+        print "\n[l, (i, j)] = 'l is the weight of the node (i, j)'\n"
+        
+        for i, level in enumerate(self._levels):
+            str_level = "P_" + str(i) + "-> "
+            for node in level:
+                str_level += "[" + str(node.l) + ", " + node.name + "] "
+            print str_level
+        print ""
     
     def _init_subclasses(self, w):
-        
-            graph = self
             
             SUMS = []
             acc = 0 

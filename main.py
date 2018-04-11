@@ -28,18 +28,18 @@ def print_schedule(msg, w, schedule):
 def is_pow_of_two(n):
     return math.log(n, 2) == math.floor(math.log(n, 2))
     
-def main(): 
-
-    N = insert_int('N := ')
-    m = insert_int('m := ')
-    
-    while(m < N):
-        print "m must be bigger or equal to N"
-        m = insert_int('m := ')
-    
-    w = list()
-    for i in range(m):
-        w.append(insert_int('t_%d := ' % i))
+def main(argv): 
+#
+#    N = insert_int('N := ')
+#    m = insert_int('m := ')
+#    
+#    while(m < N):
+#        print "m must be bigger or equal to N"
+#        m = insert_int('m := ')
+#    
+#    w = list()
+#    for i in range(m):
+#        w.append(insert_int('t_%d := ' % i))
 
 #    N = 8
 #    m = 12
@@ -47,14 +47,15 @@ def main():
 #    N = 4
 #    m = 9
 #    task = [2, 6, 2, 2, 1, 1, 2, 2, 2]
-#    N = 3
-#    m = 5
-#    w = [3, 2, 4, 2, 4]
+    N = 3
+    m = 5
+    w = [3, 2, 4, 2, 4]
+
+    LOG = argv[1] and argv[1] == "LOG"
 
     if is_pow_of_two(N):
-        print_schedule("Bisection Algorithm", w, bisection(N, m, w))
+        print_schedule("Bisection Algorithm", w, bisection(N, m, w, LOG))
 
-    print_schedule("Greedy Algorithm", w, greedy(N, m, w))
+    print_schedule("Greedy Algorithm", w, greedy(N, m, w, LOG))
 
-    print_schedule("Static Optimal Algorithm", w, optimal(N, m, w))
-    
+    print_schedule("Static Optimal Algorithm", w, optimal(N, m, w, LOG))
