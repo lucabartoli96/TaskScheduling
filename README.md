@@ -21,6 +21,28 @@ and where:\
 
 So the schedule is the optimal assignment of the m tasks to the N processors
 
+Run with:
+
+```console
+:~$ python run.py 
+```
+To see the output, for example:
+
+```console
+Bisection Algorithm
+2 3 | 4 1 1 | 3 4 | 5 | 6 | 9 | 2 4 
+Greedy Algorithm
+2 3 4 | 1 1 3 4 | 5 | 6 | 9 | 2 4 
+Static Optimal Algorithm
+2 3 | 4 | 1 1 3 | 4 | 5 | 6 | 9 | 2 4 
+```
+run with:
+
+```console
+:~$ python run.py LOG
+```
+To read the description of procedure flow.
+
 ## Bisection Algorithm
 
 Let ![equation](http://latex.codecogs.com/gif.latex?N&space;=&space;2^k) (indeed the procedure is called only if the number given is a power of two). The method recursively divides the list into two taskchains ![equation](http://latex.codecogs.com/gif.latex?(p,&space;c),(c&plus;1,q)) where ![equation](http://latex.codecogs.com/gif.latex?p) and ![equation](http://latex.codecogs.com/gif.latex?q) are the lower and thew upper bounds of the recursive call, and:\
