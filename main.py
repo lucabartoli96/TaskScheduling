@@ -30,16 +30,16 @@ def is_pow_of_two(n):
     
 def main(argv): 
 
-    N = insert_int('N := ')
-    m = insert_int('m := ')
-    
-    while(m < N):
-        print "m must be bigger or equal to N"
-        m = insert_int('m := ')
-    
-    w = list()
-    for i in range(m):
-        w.append(insert_int('t_%d := ' % i))
+#    N = insert_int('N := ')
+#    m = insert_int('m := ')
+#    
+#    while(m < N):
+#        print "m must be bigger or equal to N"
+#        m = insert_int('m := ')
+#    
+#    w = []
+#    for i in range(m):
+#        w.append(insert_int('t_%d := ' % i))
 
 #    N = 8
 #    m = 12
@@ -50,6 +50,9 @@ def main(argv):
 #    N = 3
 #    m = 5
 #    w = [3, 2, 4, 2, 4]
+    N = 8
+    m = 9
+    w = [2, 3, 5, 4, 1, 6, 5, 7, 6]
 
     LOG = argv and len(argv)>1 and argv[1] == "LOG"
 

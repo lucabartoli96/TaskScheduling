@@ -4,6 +4,12 @@ import math
 
 def bisection_rec(SUMS, height, p, q, w, LOG):
     
+    ########### LOG ##############
+    if LOG : 
+        print "Bisection" + str(w[p : q+1]) 
+        print "recursion height " + str(height)
+    ##############################
+    
     S = SUMS[q]
     
     if p > 0 :
@@ -24,7 +30,12 @@ def bisection_rec(SUMS, height, p, q, w, LOG):
             m_idx, m_val = i, cur
             
     result = [m_idx, ]
-            
+    
+    ########### LOG ##############        
+    if LOG : 
+        print "Found minimum in " + str(m_idx) + ", with the value " + str(m_val) + "\n"
+    ##############################
+    
     if height == 0:
         return result
     else:
@@ -33,6 +44,12 @@ def bisection_rec(SUMS, height, p, q, w, LOG):
         return left + result + right 
 
 def bisection(N, m, w, LOG):
+    
+    ########### LOG ##############        
+    if LOG : 
+        print "\nBISECTION ALGORITHM\n"
+    ##############################
+    
     SUMS = []
     
     acc = 0
@@ -43,7 +60,7 @@ def bisection(N, m, w, LOG):
     return bisection_rec(SUMS, int(math.floor(math.log(N, 2))) - 1, 0, m-1, w, LOG)
 
 
-def partition(N, m, c, w, LOG):
+def partition(N, m, c, w):
 
     i, j, p = 0, -1, 0
     
@@ -68,6 +85,12 @@ def partition(N, m, c, w, LOG):
     return None
 
 def greedy(N, m, w, LOG):
+    
+    ########### LOG ##############        
+    if LOG : 
+        print "\nGREEDY ALGORITHM\n"
+    ##############################
+    
 
     w_max = -float("inf")
     w_sum = 0
@@ -81,19 +104,46 @@ def greedy(N, m, w, LOG):
     q = p + w_max
     prev_p = None
     
-    while p < q or (p == q != prev_p):
+    ########### LOG ##############        
+    if LOG : 
+        print "\nw_sum = " + str(w_sum) + ", w_max = " + str(w_max)
+    ##############################
+    
+    while p < q or (p == q and p != prev_p):
         prev_p = p
         c = int(math.floor((p + q)/float(2)))
-        schedule = partition(N, m, c, w, LOG)
+        schedule = partition(N, m, c, w)
+        
+        ########### LOG ##############        
+        if LOG : 
+            print "Partitioning in (" + str(p) + ", " + str(q) + ") with weight " + str(c)
+        ##############################
 
         if schedule is None:
             p = c + 1
+            ########### LOG ##############        
+            if LOG : 
+                print "The schedule does not exist, then search on the right\n"
+            ##############################
         else:
             q = c
+            ########### LOG ##############        
+            if LOG : 
+                if p < q :
+                    print "The schedule exists, then be greedy and try on the left\n"
+                else:
+                    print "you're done\n"
+            ##############################
     
     return schedule
 
 def optimal(N, m, w, LOG):
+    
+    ########### LOG ##############        
+    if LOG : 
+        print "\nOPTIMAL STATIC ALGORITHM\n"
+    ##############################
+    
     task_graph = TaskGraph(N, m, w)
     cp = task_graph.critical_path()
     if LOG:
