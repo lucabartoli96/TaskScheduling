@@ -19,7 +19,7 @@ where:
 and where:\
 ![equation](http://latex.codecogs.com/gif.latex?<i_0,&space;i_1,&space;\dots,&space;i_k>&space;=&space;argmin\{\max_{j=0,\dots,k-1}{W(i_j,&space;i_{j&plus;1})}\})
 
-So the schedule is the optimal assignment of the m tasks to the N processors
+So the schedule is the optimal assignment of the m tasks to N processors
 
 ## LOG
 
@@ -28,7 +28,7 @@ Run with:
 ```console
 :~$ python run.py 
 ```
-To see the output, for example:
+To see only the string representation of the schedule, for example:
 
 ```console
 Bisection Algorithm
@@ -43,7 +43,46 @@ run with:
 ```console
 :~$ python run.py LOG
 ```
-To read the description of procedure flow.
+To read the description of procedures flow, like:
+
+```console
+...
+Bisection[2, 3, 5, 4, 1, 6]
+recursion height 1
+Found minimum in 2, with the value 1.0
+
+Bisection[2, 3, 5]
+recursion height 0
+Found minimum in 1, with the value 0.0
+
+Bisection[4, 1, 6]
+...
+Partitioning in (4, 7) with weight 5
+The schedule does not exist, then search on the right
+
+Partitioning in (6, 7) with weight 6
+The schedule does not exist, then search on the right
+
+Partitioning in (7, 7) with weight 7
+...
+STEP 1
+
+P_i = 'i-th Processor'
+(i, j) = 'task chain from i to j'
+
+P_0-> S 
+P_1-> (0, 0) (0, 1) 
+P_2-> (1, 1) (1, 2) (2, 2) 
+P_3-> (2, 2) (2, 3) (3, 3) 
+P_4-> (3, 3) (3, 4) (4, 4) 
+P_5-> (4, 4) (4, 5) (5, 5) 
+P_6-> (5, 5) (5, 6) (6, 6) 
+P_7-> (6, 6) (6, 7) (7, 7) 
+P_8-> (7, 8) (8, 8) 
+P_9-> T 
+
+```
+
 
 ## Bisection Algorithm
 
