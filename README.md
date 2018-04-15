@@ -1,4 +1,4 @@
-# TaskScheduling
+# Static Scheduling
 
 The application implements three algorithms for the following problem:
 
